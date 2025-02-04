@@ -28,19 +28,25 @@ jobs:
       run: |
         pip install -r requirements.txt
 
-    # Step 4: Install chrome
-    - name: Install Google Chrome
+    # Step 4: Install Chromium
+    - name: Install Chromium
       run: |
         sudo apt-get update
-        sudo apt-get install -y wget
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        sudo apt install -y ./google-chrome-stable_current_amd64.deb
+        sudo apt-get install -y chromium-browser
 
-    # Step 4b: Install chrome
-    - name: Verify Google Chrome installation
+    # Step 4b: Verify Chromium
+    - name: Verify Chromium installation 1
       run: |
-        google-chrome --version
+        chromium-browser --version
+
+    # Step 4b: Verify Chromium
+    - name: Verify Chromium installation 2
+      run: |
         whereis google-chrome
+
+    # Step 4b: Verify Chromium
+    - name: Verify Chromium installation 3
+      run: |
         which google-chrome
 
     # Step 5: Install chromedriver
