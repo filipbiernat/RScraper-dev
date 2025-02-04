@@ -191,7 +191,11 @@ if __name__ == "__main__":
         print(f"\nFound departure dates for {name}:")
         for term, price in results:
             print(f"{term}: {price} zł")
-        
-        # Generating CSV file path in 'data' folder
+
+        print(f"\nEnsuring that the 'data' directory exists...")
+        if not os.path.exists("data"):
+            os.makedirs("data")
+
+        print(f"\nProcessing data...")
         file_path = os.path.join("data", f"{name}.csv")
         process_data(results, file_path)
