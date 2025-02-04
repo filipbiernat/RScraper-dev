@@ -28,23 +28,18 @@ jobs:
       run: |
         pip install -r requirements.txt
 
-    # Step 4: Install chromedriver
+    # Step 4: Install chrome
+    - name: Install chrome 
+      run: |
+        sudo dpkg -i google-chrome-stable_current_amd64.deb
+        sudo apt-get install -f
+
+    # Step 5: Install chromedriver
     - name: Install chromedriver
       run: |
         sudo apt-get install -y chromium-chromedriver  # Install chromedriver on Ubuntu
 
-    # Step 4a: Check chromedriver
-    - name: Check chromedriver 1 
-      run: |
-        dpkg -l | grep chromium-chromedriver
-
-
-    # Step 4a: Check chromedriver
-    - name: Check chromedriver 3
-      run: |
-        whereis chromium-chromedriver
-
-    # Step 5: Run the scraper script
+    # Step 6: Run the scraper script
     - name: Run scraper
       run: |
         python RScraper.py
