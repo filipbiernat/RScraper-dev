@@ -38,7 +38,10 @@ jobs:
 
     # Step 4b: Install chrome
     - name: Verify Google Chrome installation
-      run: google-chrome --version
+      run: |
+        google-chrome --version
+        whereis google-chrome
+        which google-chrome
 
     # Step 5: Install chromedriver
     - name: Install chromedriver
