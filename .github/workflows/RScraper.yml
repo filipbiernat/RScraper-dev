@@ -34,9 +34,18 @@ jobs:
         sudo apt-get install -y chromium-chromedriver  # Install chromedriver on Ubuntu
 
     # Step 4a: Check chromedriver
-    - name: Check chromedriver
+    - name: Check chromedriver 1 
+      run: |
+        dpkg -l | grep chromium-chromedriver
+
+    # Step 4a: Check chromedriver
+    - name: Check chromedriver 2
       run: |
         which chromium-chromedriver
+
+    # Step 4a: Check chromedriver
+    - name: Check chromedriver 3
+      run: |
         whereis chromium-chromedriver
 
     # Step 5: Run the scraper script
