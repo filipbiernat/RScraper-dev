@@ -23,13 +23,19 @@ jobs:
       with:
         python-version: '3.9'  # Or another version of Python that you use
 
-    # Step 3: Install dependencies (e.g., selenium, chromedriver)
+    # Step 3: Install python dependencies (e.g., selenium)
     - name: Install dependencies
       run: |
         pip install -r requirements.txt
-        sudo apt-get install -y chromium-driver  # Install chromedriver on Ubuntu
 
-    # Step 4: Run the scraper script
+    # Step 4: Install chromedriver
+    - name: Install dependencies
+      run: |
+        sudo apt-get install -y chromium-chromedriver  # Install chromedriver on Ubuntu
+        which chromium-chromedriver
+        whereis chromium-chromedriver
+
+    # Step 5: Run the scraper script
     - name: Run scraper
       run: |
         python RScraper.py
