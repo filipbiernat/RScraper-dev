@@ -23,7 +23,8 @@ def get_dates_and_prices(url):
         options.add_argument("--disable-dev-shm-usage")
         chromedriver_path = "C:/chromedriver-win64/chromedriver.exe" if IS_WINDOWS else "/usr/local/bin/chromedriver"
         service = Service(chromedriver_path)
-        return webdriver.Chrome(service=service, options=options)
+        #return webdriver.Chrome(service=service, options=options)
+        return webdriver.Chrome(options=options)
     
     def click_button(driver, xpath, description, timeout=10):
         try:
