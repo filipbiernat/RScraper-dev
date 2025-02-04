@@ -58,3 +58,16 @@ jobs:
     - name: Run scraper
       run: |
         python RScraper.py
+
+    # Step 7: Check if page_source.html exists and commit it if it does
+    - name: Check if page_source.html exists and commit
+      run: |
+        if [ -f "page_source.html" ]; then
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@users.noreply.github.com"
+          git add page_source.html
+          git commit -m "Add page_source.html from scraper"
+          git push
+        else
+          echo "No page_source.html found, skipping commit."
+        fi

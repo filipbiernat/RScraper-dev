@@ -37,6 +37,8 @@ def get_dates_and_prices(url):
             )
             button.click()
         except Exception as e:
+            with open("page_source.html", "w", encoding='utf-8') as f:
+                f.write(driver.page_source) # FIXME FB
             driver.quit()
             raise Exception(f"Button '{description}' not found: {e}")
     
