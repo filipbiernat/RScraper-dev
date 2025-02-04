@@ -30,7 +30,7 @@ def get_dates_and_prices(url):
 
         return webdriver.Chrome(options=options)
     
-    def click_button(driver, xpath, description, timeout=10):
+    def click_button(driver, xpath, description, timeout=20):
         try:
             button = WebDriverWait(driver, timeout).until(
                 EC.element_to_be_clickable((By.XPATH, xpath))
