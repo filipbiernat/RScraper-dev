@@ -38,10 +38,6 @@ jobs:
       run: |
         dpkg -l | grep chromium-chromedriver
 
-    # Step 4a: Check chromedriver
-    - name: Check chromedriver 2
-      run: |
-        which chromium-chromedriver
 
     # Step 4a: Check chromedriver
     - name: Check chromedriver 3
