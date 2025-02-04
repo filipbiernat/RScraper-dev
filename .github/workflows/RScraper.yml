@@ -42,12 +42,12 @@ jobs:
     # Step 4b: Verify Chromium
     - name: Verify Chromium installation 2
       run: |
-        whereis google-chrome
+        whereis chromium-browser 
 
     # Step 4b: Verify Chromium
     - name: Verify Chromium installation 3
       run: |
-        which google-chrome
+        which chromium-browser 
 
     # Step 5: Install chromedriver
     - name: Install chromedriver
