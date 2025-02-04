@@ -61,7 +61,7 @@ jobs:
 
     # Step 7: Check if page_source.html exists and commit it if it does
     - name: Check if page_source.html exists and commit
-      continue-on-error: true  # Ensure this step runs even if previous steps failed
+      if: always()  # This ensures the step will run no matter what
       run: |
         if [ -f "page_source.html" ]; then
           git config --global user.name "github-actions"
