@@ -76,7 +76,8 @@ def get_dates_and_prices(url):
     print("Waiting for page to load...")
     click_button(driver, "//button[contains(., 'Akceptuj wszystkie')]" , "Akceptuj wszystkie")
     click_button(driver, "//button[contains(@class, 'r-select-button-termin')]", "r-select-button-termin")
-    click_button(driver, "//button[contains(., 'Lista')]", "Lista")
+    #click_button(driver, "//button[contains(., 'Lista')]", "Lista")
+    click_button(driver, '//button[@data-test-id="r-tab:kartaHotelu-konfigurator-termin:1"]', "Lista")
     
     date_list_xpath = "//div[contains(@class, 'kh-terminy-list')]"
     date_list_text = extract_text(driver, date_list_xpath, "Departure dates list")
@@ -196,6 +197,5 @@ if __name__ == "__main__":
         if not os.path.exists("data"):
             os.makedirs("data")
 
-        print(f"\nProcessing data...")
         file_path = os.path.join("data", f"{name}.csv")
         process_data(results, file_path)
