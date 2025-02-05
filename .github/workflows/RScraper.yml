@@ -61,12 +61,14 @@ jobs:
 
     # Step 7: Check if 'data' folder exists and commit all files if it is not empty
     - name: Check if 'data' folder exists and commit all files
+      if: always()  # This ensures the step will run no matter what
       run: |
         if [ -d "data" ] && [ "$(ls -A data)" ]; then
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@users.noreply.github.com"
-          git add data/*  # Add all files in 'data' folder
-          git commit -m "Add files from 'data' folder"
+          TIMESTAMP=$(date +"%d.%m.%Y %H:%M:%S")  # Format DD.MM.RRRR HH:MM:SS
+          git add data/*
+          git commit -m "Auto-update: Data from $TIMESTAMP 🕒"
           git push
         else
           echo "Data folder is either empty or does not exist, skipping commit."
