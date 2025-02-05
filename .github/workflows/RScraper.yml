@@ -59,16 +59,15 @@ jobs:
       run: |
         python RScraper.py
 
-    # Step 7: Check if page_source.html exists and commit it if it does
-    - name: Check if page_source.html exists and commit
-      if: always()  # This ensures the step will run no matter what
+    # Step 7: Check if 'data' folder exists and commit all files if it is not empty
+    - name: Check if 'data' folder exists and commit all files
       run: |
-        if [ -f "page_source.html" ]; then
+        if [ -d "data" ] && [ "$(ls -A data)" ]; then
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@users.noreply.github.com"
-          git add page_source.html
-          git commit -m "Add page_source.html from scraper"
+          git add data/*  # Add all files in 'data' folder
+          git commit -m "Add files from 'data' folder"
           git push
         else
-          echo "No page_source.html found, skipping commit."
+          echo "Data folder is either empty or does not exist, skipping commit."
         fi
