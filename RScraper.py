@@ -40,11 +40,9 @@ def get_dates_and_prices(url):
             button.click()
             print(f"Button '{description}' clicked successfully.")
         except Exception as e:
-            with open("page_source.html", "w", encoding='utf-8') as f:
-                f.write(driver.page_source) # Save page source for debugging
             driver.quit()
             print(f"Error clicking button '{description}': {e}")
-            raise Exception(f"Button '{description}' not found: {e}")
+            raise Exception(f"Button '{description}' not found: {e}.")
     
     def extract_text(driver, xpath, description, timeout=10):
         print(f"Attempting to extract text from: {description}")
