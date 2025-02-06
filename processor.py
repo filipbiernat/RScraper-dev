@@ -65,6 +65,11 @@ def merge_prices(existing_prices, new_prices):
             existing_prices[term] = timestamps
     return existing_prices
 
+def parse_date_from_term(term):
+    print(f"Parsing the start date from the format \"dd.mm - dd.mm\"")
+    start_date_str = term.split(' - ')[0]
+    return datetime.strptime(start_date_str, "%d.%m")
+
 def save_prices_to_csv(prices, file_path):
     print(f"Saving merged prices to CSV file: {file_path}")
     with open(file_path, 'w', newline='', encoding='utf-8') as file:
@@ -76,12 +81,17 @@ def save_prices_to_csv(prices, file_path):
         sorted_timestamps = sorted(timestamps)
         writer.writerow([''] + sorted_timestamps)
         
-        for term, timestamps_prices in prices.items():
+        print(f"Sorting the dates in ascending order by the start date")
+        sorted_terms = sorted(prices.keys(), key=parse_date_from_term)
+        
+        print(f"Building the output file: {file_path}")
+
+        for term in sorted_terms:
             row = [term]
             for timestamp in sorted_timestamps:
-                row.append(timestamps_prices.get(timestamp, ''))
+                row.append(prices[term].get(timestamp, ''))
             writer.writerow(row)
-    print(f"Merged data saved to '{file_path}'")
+    print(f"Merged data saved to: '{file_path}'")
 
 def process_data(results, file_path):
     existing_prices = load_existing_prices(file_path)
