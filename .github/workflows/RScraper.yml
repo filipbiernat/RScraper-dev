@@ -3,12 +3,12 @@ name: RScraper
 on:
   workflow_dispatch:  # This enables manual trigger of the workflow
   schedule:
-    - cron: '0 3 * * *' # Run daily at 4:00 AM CET, 3:00 AM UTC
+    - cron: '0 3 * * *' # Run daily at 3:00 AM UTC
       
 
 jobs:
   scrape:
-    runs-on: ubuntu-latest  # You can also choose windows-latest if you prefer to run on Windows
+    runs-on: ubuntu-latest
 
     steps:
     # Steps to perform in the job
@@ -23,36 +23,21 @@ jobs:
       with:
         python-version: '3.9'  # Or another version of Python that you use
 
-    # Step 3: Install python dependencies (e.g., selenium)
+    # Step 3: Install python dependencies
     - name: Install python dependencies
       run: |
-        pip install -r requirements.txt
+        pip install selenium
 
-    # Step 4: Install Chromium
+    # Step 4: Install Chromium for Ubuntu
     - name: Install Chromium
       run: |
         sudo apt-get update
         sudo apt-get install -y chromium-browser
 
-    # Step 4b: Verify Chromium
-    - name: Verify Chromium installation 1
-      run: |
-        chromium-browser --version
-
-    # Step 4b: Verify Chromium
-    - name: Verify Chromium installation 2
-      run: |
-        whereis chromium-browser 
-
-    # Step 4b: Verify Chromium
-    - name: Verify Chromium installation 3
-      run: |
-        which chromium-browser 
-
-    # Step 5: Install chromedriver
+    # Step 5: Install chromedriver  for Ubuntu
     - name: Install chromedriver
       run: |
-        sudo apt-get install -y chromium-chromedriver  # Install chromedriver on Ubuntu
+        sudo apt-get install -y chromium-chromedriver
 
     # Step 6: Run the scraper script
     - name: Run scraper

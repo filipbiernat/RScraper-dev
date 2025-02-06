@@ -22,20 +22,18 @@ def get_dates_and_prices(url):
             options.add_argument("--headless")
         options.add_argument("--no-sandbox")
         options.add_argument("--disable-dev-shm-usage")
-        chromedriver_path = "C:/chromedriver-win64/chromedriver.exe" if IS_WINDOWS else "/usr/local/bin/chromedriver"
-        service = Service(chromedriver_path)
         
         if not IS_WINDOWS:
             options.binary_location = "/usr/bin/chromium-browser"
         
-        print(f"Using chromedriver path: {chromedriver_path}")
         return webdriver.Chrome(options=options)
     
-    def click_button(driver, xpath, description, timeout=20):
+    def click_button(driver, description, xpath_fragment, timeout=20):
         print(f"Attempting to click button: {description}")
         try:
+            full_xpath = f"//button{xpath_fragment}"
             button = WebDriverWait(driver, timeout).until(
-                EC.element_to_be_clickable((By.XPATH, xpath))
+                EC.element_to_be_clickable((By.XPATH, full_xpath))
             )
             button.click()
             print(f"Button '{description}' clicked successfully.")
@@ -72,10 +70,9 @@ def get_dates_and_prices(url):
     WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.TAG_NAME, 'body')))
     
     print("Waiting for page to load...")
-    click_button(driver, "//button[contains(., 'Akceptuj wszystkie')]" , "Akceptuj wszystkie")
-    click_button(driver, "//button[contains(@class, 'r-select-button-termin')]", "r-select-button-termin")
-    #click_button(driver, "//button[contains(., 'Lista')]", "Lista")
-    click_button(driver, '//button[@data-test-id="r-tab:kartaHotelu-konfigurator-termin:1"]', "Lista")
+    click_button(driver, "Akceptuj wszystkie", "[contains(., 'Akceptuj wszystkie')]")
+    click_button(driver, "r-select-button-termin", "[contains(@class, 'r-select-button-termin')]")
+    click_button(driver, "Lista", "[@data-test-id='r-tab:kartaHotelu-konfigurator-termin:1']")
     
     date_list_xpath = "//div[contains(@class, 'kh-terminy-list')]"
     date_list_text = extract_text(driver, date_list_xpath, "Departure dates list")
