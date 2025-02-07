@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-IS_IN_BACKGROUND = True
+IS_IN_BACKGROUND = False
 IS_WINDOWS = platform.system() == "Windows"
 
 def configure_driver():
@@ -46,7 +46,11 @@ def click_div(driver, description, xpath, timeout=20): #fixme fb
         button = WebDriverWait(driver, timeout).until(
             EC.element_to_be_clickable(div_block)
         )
-        button.click()
+        #button.click()
+
+        div_block_2 = driver.find_element(By.XPATH, xpath)
+        driver.execute_script("arguments[0].click();", div_block_2)
+
         print(f"DIV block '{description}' clicked successfully.")
     except Exception as e:
         driver.quit()
