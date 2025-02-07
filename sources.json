@@ -1,10 +1,26 @@
 {
-  "Kos": {
-    "link": "https://r.pl/kos-wczasy/white-olive-marine-aquapark?liczbaPokoi=1&czyCenaZaWszystkich=0&wiek=1994-12-31",
+  "Living_in_America__Warszawa__1os": {
+    "link": "https://r.pl/living-in-america/zakwaterowanie-uma?czyCenaZaWszystkich=1&wiek=1995-01-01&liczbaPokoi=1",
+    "departure_from": "Warszawa"
+  },
+  "Living_in_America__Warszawa__2os": {
+    "link": "https://r.pl/living-in-america/zakwaterowanie-uma?czyCenaZaWszystkich=1&wiek=1995-01-01&wiek=1995-01-01&liczbaPokoi=1",
+    "departure_from": "Warszawa"
+  },
+  "Hiszpanskie_El_Clasico__Katowice__1os": {
+    "link": "https://r.pl/hiszpanskie-el-clasico/zakwaterowanie-hlx?czyCenaZaWszystkich=1&wiek=1995-01-01&liczbaPokoi=1",
     "departure_from": "Katowice"
   },
-  "HiszpanskieElClassico": {
-    "link": "https://r.pl/hiszpanskie-el-clasico/zakwaterowanie-hlx?liczbaPokoi=1&czyCenaZaWszystkich=0&wiek=1995-01-02",
-    "departure_from": "Warszawa"
+  "Hiszpanskie_El_Clasico__Katowice__2os": {
+    "link": "https://r.pl/hiszpanskie-el-clasico/zakwaterowanie-hlx?czyCenaZaWszystkich=1&wiek=1995-01-01&wiek=1995-01-01&liczbaPokoi=1",
+    "departure_from": "Katowice"
+  },
+  "Tunezja_Wielobarwna_Mozaika__Katowice__1os": {
+    "link": "https://r.pl/tunezja-bajeczna-mozaika/zakwaterowanie-tuf?czyCenaZaWszystkich=1&wiek=1995-01-01&liczbaPokoi=1",
+    "departure_from": "Katowice"
+  },
+  "Tunezja_Wielobarwna_Mozaika__Katowice__2os": {
+    "link": "https://r.pl/tunezja-bajeczna-mozaika/zakwaterowanie-tuf?czyCenaZaWszystkich=1&wiek=1995-01-01&wiek=1995-01-01&liczbaPokoi=1",
+    "departure_from": "Katowice"
   }
 }
