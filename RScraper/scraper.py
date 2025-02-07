@@ -1,5 +1,6 @@
 import re
 import platform
+import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -97,6 +98,8 @@ def get_dates_and_prices(url, departure_from):
     click_div(driver, "Miejsce wylotu", "//div[contains(@class, 'r-select-form__input r-select-form__input--S')]")
     click_div(driver, departure_from, f"//div[contains(@class, 'r-select-options__option--selectable') and contains(., '{departure_from}')]")
 
+    print("Extracting text...")
+    time.sleep(2)
     date_list_xpath = "//div[contains(@class, 'kh-terminy-list')]"
     date_list_text = extract_text(driver, date_list_xpath, "Departure dates list")
     
