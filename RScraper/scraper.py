@@ -99,7 +99,17 @@ def get_dates_and_prices(url, departure_from):
     click_div(driver, departure_from, f"//div[contains(@class, 'r-select-options__option--selectable') and contains(., '{departure_from}')]")
 
     print("Extracting text...")
-    time.sleep(2)
+    time.sleep(4)
+
+    #fixme fb
+
+    temp_xpath = "//div[contains(@class, 'r-select-options__option--selectable')"
+    temp_text = extract_text(driver, temp_xpath, "Departure airport")
+        print(f"Departure airport: {temp_text}")
+
+
+
+
     date_list_xpath = "//div[contains(@class, 'kh-terminy-list')]"
     date_list_text = extract_text(driver, date_list_xpath, "Departure dates list")
     
