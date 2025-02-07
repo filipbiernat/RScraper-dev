@@ -1,4 +1,10 @@
 {
-  "Kos": "https://r.pl/kos-wczasy/white-olive-marine-aquapark?liczbaPokoi=1&czyCenaZaWszystkich=0&wiek=1994-12-31",
-  "HiszpanskieElClassico": "https://r.pl/hiszpanskie-el-clasico/zakwaterowanie-hlx?liczbaPokoi=1&czyCenaZaWszystkich=0&wiek=1995-01-02"
+  "Kos": {
+    "link": "https://r.pl/kos-wczasy/white-olive-marine-aquapark?liczbaPokoi=1&czyCenaZaWszystkich=0&wiek=1994-12-31",
+    "departure_from": "Katowice"
+  },
+  "HiszpanskieElClassico": {
+    "link": "https://r.pl/hiszpanskie-el-clasico/zakwaterowanie-hlx?liczbaPokoi=1&czyCenaZaWszystkich=0&wiek=1995-01-02",
+    "departure_from": "Warszawa"
+  }
 }

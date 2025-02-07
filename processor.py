@@ -66,7 +66,7 @@ def merge_prices(existing_prices, new_prices):
     return existing_prices
 
 def parse_date_from_term(term):
-    print(f"Parsing the start date from the format \"dd.mm - dd.mm\"")
+    # Parsing the start date from the format "dd.mm - dd.mm"
     start_date_str = term.split(' - ')[0]
     return datetime.strptime(start_date_str, "%d.%m")
 

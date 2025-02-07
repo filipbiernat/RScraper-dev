@@ -11,11 +11,14 @@ def read_urls_from_json(json_file):
 if __name__ == "__main__":
     json_file = "sources.json"
     url_data = read_urls_from_json(json_file)
-    
-    for name, url in url_data.items():
+
+    for name, details in url_data.items():
+        link = details["link"]
+        departure_from = details["departure_from"]
+
         print(f"\nReading data for {name}...")
-        results = get_dates_and_prices(url)
-        
+        results = get_dates_and_prices(link, departure_from)
+
         print(f"\nFound departure dates for {name}:")
         for term, price in results:
             print(f"{term}: {price} zł")

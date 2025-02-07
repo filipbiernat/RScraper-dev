@@ -22,12 +22,11 @@ def configure_driver():
     
     return webdriver.Chrome(options=options)
 
-def click_button(driver, description, xpath_fragment, timeout=20):
+def click_button(driver, description, xpath, timeout=20):
     print(f"Attempting to click button: {description}")
     try:
-        full_xpath = f"//button{xpath_fragment}"
         button = WebDriverWait(driver, timeout).until(
-            EC.element_to_be_clickable((By.XPATH, full_xpath))
+            EC.element_to_be_clickable((By.XPATH, xpath))
         )
         button.click()
         print(f"Button '{description}' clicked successfully.")
@@ -57,7 +56,7 @@ def parse_dates_and_prices(text):
     print(f"Parsed data: {parsed_data}")
     return parsed_data
 
-def get_dates_and_prices(url):
+def get_dates_and_prices(url, departure_from):
     print(f"Opening URL: {url}")
     driver = configure_driver()
     driver.get(url)
@@ -65,10 +64,12 @@ def get_dates_and_prices(url):
     WebDriverWait(driver, 20).until(EC.presence_of_element_located((By.TAG_NAME, 'body')))
     
     print("Waiting for page to load...")
-    click_button(driver, "Akceptuj wszystkie", "[contains(., 'Akceptuj wszystkie')]")
-    click_button(driver, "r-select-button-termin", "[contains(@class, 'r-select-button-termin')]")
-    click_button(driver, "Lista", "[@data-test-id='r-tab:kartaHotelu-konfigurator-termin:1']")
-    
+    click_button(driver, "Akceptuj wszystkie", "//button[contains(., 'Akceptuj wszystkie')]")
+    click_button(driver, "Termin", "//button[contains(@class, 'r-select-button-termin')]")
+    click_button(driver, "Lista", "//button[@data-test-id='r-tab:kartaHotelu-konfigurator-termin:1']")
+    click_button(driver, "Miejsce wylotu", "//div[contains(@class, 'r-select-form__input r-select-form__input--S')]")
+    click_button(driver, departure_from, f"//div[contains(@class, 'r-select-options__option') and contains(., '{departure_from}')]")
+
     date_list_xpath = "//div[contains(@class, 'kh-terminy-list')]"
     date_list_text = extract_text(driver, date_list_xpath, "Departure dates list")
     
