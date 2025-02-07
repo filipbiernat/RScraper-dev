@@ -66,9 +66,20 @@ def merge_prices(existing_prices, new_prices):
     return existing_prices
 
 def parse_date_from_term(term):
-    # Parsing the start date from the format "dd.mm - dd.mm"
+    today = datetime.today()
+    
+    # Extract the start date from the format "dd.mm - dd.mm"
     start_date_str = term.split(' - ')[0]
-    return datetime.strptime(start_date_str, "%d.%m")
+    parsed_date = datetime.strptime(start_date_str, "%d.%m")
+    
+    # Assign the current year
+    full_date = parsed_date.replace(year=today.year)
+    
+    # If the date is in the past, assign the next year
+    if full_date < today:
+        full_date = full_date.replace(year=today.year + 1)
+    
+    return full_date
 
 def save_prices_to_csv(prices, file_path):
     print(f"Saving merged prices to CSV file: {file_path}")
