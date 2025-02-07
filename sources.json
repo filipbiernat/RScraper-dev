@@ -2,5 +2,9 @@
   "Hiszpanskie_El_Clasico__Katowice__1os": {
     "link": "https://r.pl/hiszpanskie-el-clasico/zakwaterowanie-hlx?czyCenaZaWszystkich=1&wiek=1995-01-01&liczbaPokoi=1",
     "departure_from": "Katowice"
+  },
+  "Hiszpanskie_El_Clasico__Katowice__2os": {
+    "link": "https://r.pl/hiszpanskie-el-clasico/zakwaterowanie-hlx?czyCenaZaWszystkich=1&wiek=1995-01-01&wiek=1995-01-01&liczbaPokoi=1",
+    "departure_from": "Katowice"
   }
 }
