@@ -6,7 +6,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-IS_IN_BACKGROUND = False
+IS_IN_BACKGROUND = True
 IS_WINDOWS = platform.system() == "Windows"
 
 def configure_driver():
