@@ -68,7 +68,7 @@ def get_dates_and_prices(url, departure_from):
     click_button(driver, "Termin", "//button[contains(@class, 'r-select-button-termin')]")
     click_button(driver, "Lista", "//button[@data-test-id='r-tab:kartaHotelu-konfigurator-termin:1']")
     click_button(driver, "Miejsce wylotu", "//div[contains(@class, 'r-select-form__input r-select-form__input--S')]")
-    click_button(driver, departure_from, f"//div[contains(@class, 'r-select-options__option') and contains(., '{departure_from}')]")
+    click_button(driver, departure_from, f"//div[contains(@class, 'r-select-options__option-content') and contains(., '{departure_from}')]")
 
     date_list_xpath = "//div[contains(@class, 'kh-terminy-list')]"
     date_list_text = extract_text(driver, date_list_xpath, "Departure dates list")
