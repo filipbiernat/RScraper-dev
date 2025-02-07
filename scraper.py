@@ -28,7 +28,6 @@ def click_button(driver, description, xpath, timeout=20):
         button = WebDriverWait(driver, timeout).until(
             EC.element_to_be_clickable((By.XPATH, xpath))
         )
-        driver.execute_script("arguments[0].scrollIntoView();", button) #fixme fb
         button.click()
         print(f"Button '{description}' clicked successfully.")
     except Exception as e:
