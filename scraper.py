@@ -28,6 +28,7 @@ def click_button(driver, description, xpath, timeout=20):
         button = WebDriverWait(driver, timeout).until(
             EC.element_to_be_clickable((By.XPATH, xpath))
         )
+        driver.execute_script("arguments[0].scrollIntoView();", button) #fixme fb
         button.click()
         print(f"Button '{description}' clicked successfully.")
     except Exception as e:
@@ -68,7 +69,10 @@ def get_dates_and_prices(url, departure_from):
     click_button(driver, "Termin", "//button[contains(@class, 'r-select-button-termin')]")
     click_button(driver, "Lista", "//button[@data-test-id='r-tab:kartaHotelu-konfigurator-termin:1']")
     click_button(driver, "Miejsce wylotu", "//div[contains(@class, 'r-select-form__input r-select-form__input--S')]")
+    import time #fixme fb
+    time.sleep(5)
     click_button(driver, departure_from, f"//div[contains(@class, 'r-select-options__option-content') and contains(., '{departure_from}')]")
+    time.sleep(5) #fixme fb
 
     date_list_xpath = "//div[contains(@class, 'kh-terminy-list')]"
     date_list_text = extract_text(driver, date_list_xpath, "Departure dates list")
