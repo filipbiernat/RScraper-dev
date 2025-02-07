@@ -63,6 +63,19 @@ def click_div(driver, description, xpath, timeout=20):
         print(f"Error clicking on DIV block '{description}': {e}")
         raise Exception(f"DIV block '{description}' not found: {e}.")
 
+def wait_for_loader_to_disappear(driver, timeout=20):
+    print("Waiting for the loader to disappear")
+    try:
+        loader_xpath = "//div[contains(@class, 'r-loader')]"
+        WebDriverWait(driver, timeout).until(
+            EC.invisibility_of_element_located((By.XPATH, loader_xpath))
+        )
+        print("Loader disappeared, proceeding with click.")
+    except Exception as e:
+        print(f"Error while waiting for loader: {e}")
+        raise
+
+
 def extract_text(driver, xpath, description, timeout=10):
     print(f"Attempting to extract text from: {description}")
     try:
@@ -93,20 +106,16 @@ def get_dates_and_prices(url, departure_from):
     
     print("Waiting for page to load...")
     click_button(driver, "Akceptuj wszystkie", "//button[contains(., 'Akceptuj wszystkie')]")
+
+
+    click_button(driver, "Miejsce wylotu", "//button[@data-test-id='r-select-button:kartaHotelu-konfigurator:polaczenie']")
+    click_div(driver, departure_from, f"//div[contains(., '{departure_from}') and contains(@data-test-id, 'r-component:pojedyncze-polaczenie:container')]")
+    wait_for_loader_to_disappear(driver)
+
     click_button(driver, "Termin", "//button[contains(@class, 'r-select-button-termin')]")
     click_button(driver, "Lista", "//button[@data-test-id='r-tab:kartaHotelu-konfigurator-termin:1']")
-    click_div(driver, "Miejsce wylotu", "//div[contains(@class, 'r-select-form__input r-select-form__input--S')]")
-    click_div(driver, departure_from, f"//div[contains(@class, 'r-select-options__option--selectable') and contains(., '{departure_from}')]")
 
     print("Extracting text...")
-    time.sleep(4)
-
-    #fixme fb
-
-    temp_xpath = "//div[contains(@class, 'r-select-form__input r-select-form__input--S')]"
-    temp_text = extract_text(driver, temp_xpath, "Departure airport")
-    print(f"Departure airport: {temp_text}")
-
     date_list_xpath = "//div[contains(@class, 'kh-terminy-list')]"
     date_list_text = extract_text(driver, date_list_xpath, "Departure dates list")
     
