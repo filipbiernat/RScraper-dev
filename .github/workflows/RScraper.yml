@@ -42,7 +42,7 @@ jobs:
     # Step 6: Run the scraper script
     - name: Run scraper
       run: |
-        python RScraper.py
+        python RScraper/RScraper.py
 
     # Step 7: Check if 'data' folder exists and commit all files if it is not empty
     - name: Check if 'data' folder exists and commit all files
