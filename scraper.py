@@ -25,9 +25,13 @@ def configure_driver():
 def click_button(driver, description, xpath, timeout=20):
     print(f"Attempting to click button: {description}")
     try:
+        # Ensure the button is clickable
+        xpath_element = (By.XPATH, xpath)
         button = WebDriverWait(driver, timeout).until(
-            EC.element_to_be_clickable((By.XPATH, xpath))
+            EC.element_to_be_clickable(xpath_element)
         )
+
+        # Click
         button.click()
         print(f"Button '{description}' clicked successfully.")
     except Exception as e:
@@ -35,27 +39,28 @@ def click_button(driver, description, xpath, timeout=20):
         print(f"Error clicking button '{description}': {e}")
         raise Exception(f"Button '{description}' not found: {e}.")
 
-def click_div(driver, description, xpath, timeout=20): #fixme fb 
-    print(f"Attempting to click DIV block: {description}")
+def click_div(driver, description, xpath, timeout=20):
+    print(f"Attempting to click on DIV block: {description}")
     try:
-        div_block = WebDriverWait(driver, timeout).until(
-            EC.presence_of_element_located((By.XPATH, xpath))
+        # Ensure the DIV block is visible
+        xpath_element = (By.XPATH, xpath)
+        located_div_block = WebDriverWait(driver, timeout).until(
+            EC.presence_of_element_located(xpath_element)
         )
-        driver.execute_script("arguments[0].scrollIntoView();", div_block)
+        driver.execute_script("arguments[0].scrollIntoView();", located_div_block)
 
-        button = WebDriverWait(driver, timeout).until(
-            EC.element_to_be_clickable(div_block)
+        # Ensure the DIV block is clickable
+        clickable_div_block = WebDriverWait(driver, timeout).until(
+            EC.element_to_be_clickable(located_div_block)
         )
-        #button.click()
 
-        div_block_2 = driver.find_element(By.XPATH, xpath)
-        driver.execute_script("arguments[0].click();", div_block_2)
-
+        # Click
+        driver.execute_script("arguments[0].click();", clickable_div_block)
         print(f"DIV block '{description}' clicked successfully.")
     except Exception as e:
         driver.quit()
-        print(f"Error clicking button '{description}': {e}")
-        raise Exception(f"Button '{description}' not found: {e}.")
+        print(f"Error clicking on DIV block '{description}': {e}")
+        raise Exception(f"DIV block '{description}' not found: {e}.")
 
 def extract_text(driver, xpath, description, timeout=10):
     print(f"Attempting to extract text from: {description}")
